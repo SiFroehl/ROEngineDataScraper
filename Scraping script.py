@@ -141,13 +141,13 @@ with open("scraped.csv", "w") as out:
                 if "ignitions" in value.keys():
                     ignitions = int(value["ignitions"])
                 if "ullage" in value.keys():
-                    ullage = bool(value["ullage"])
+                    ullage = value["ullage"]
                 if "atmosphereCurve" in value.keys():
                     for i,val in value["atmosphereCurve"].items():
                         if val.split(" ")[0].strip() == "1":
-                            surfaceISP = val.split(" ")[1].strip()
+                            surfaceISP = float(val.split(" ")[1].strip())
                         if val.split(" ")[0].strip() == "0":
-                            vacuumISP = val.split(" ")[1].strip()
+                            vacuumISP = float(val.split(" ")[1].strip())
                 #print("  ",name)
                 #print("   ",minThrust, maxThrust, surfaceISP, vacuumISP, ignitions, ullage)
                 out.write(name+";"+str(minThrust)+";"+str(maxThrust)+";"+
